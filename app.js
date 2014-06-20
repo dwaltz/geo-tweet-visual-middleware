@@ -2,20 +2,13 @@
 
 var express = require('express');
 var Twitter = require('twit');
-var twitterCreds = require('./twitcreds.json');
-var twitter;
-//Twitter Application information
-if( process.env.consumer_key ){
-	twitter = new Twitter({
-		"consumer_key": process.env.CONSUMER_KEY,
-		"consumer_secret": process.env.CONSUMER_SECRET,
-		"access_token": process.env.ACCESS_TOKEN,
-		"access_token_secret": process.env.ACCESS_TOKEN_SECRET
+//var twitterCreds = require('./twitcreds.json');
+var twitter = new Twitter({
+		"consumer_key": "ob4kks6sec77NVbEq317SDS4m",
+		"consumer_secret": "9WGERSvYsEe9pPy2Amy0ZwHYkdd1DBuFnTEMDiMW0nnQ73eScc",
+		"access_token": "884498701-Eu1DKP2oFlrk3jGMQxt5EuMEGLRTSsGmnglv2oQE",
+		"access_token_secret": "pBAe5yguK9T62n0xdMbqNrrAkYOm4tMJYMNAbbSz8BfQ3"
 	});
-	twitter = new Twitter(twitterCreds);
-} else {
-	twitter = new Twitter(twitterCreds);
-}
 
 var app = express();
 
