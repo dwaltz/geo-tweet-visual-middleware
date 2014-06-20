@@ -1,0 +1,31 @@
+{
+	"name": "geo-tweet-visual-middleware",
+	"version": "0.1.0",
+	"description": "Middleware for geo tweet visualization",
+	"main": "app.js",
+	"scripts": {
+		"start": "node app.js"
+	},
+	"dependencies": {
+		"express": "~3.4.7",
+		"twit": "~1.1.15",
+		"underscore": "^1.6.0"
+	},
+	"engines": {
+		"node": "0.10.x"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/dwaltz/geo-tweet-visual-middleware"
+	},
+	"keywords": [
+		"node",
+		"heroku",
+		"express",
+		"d3",
+		"twitter"
+	],
+	"author": "David Waltz",
+	"contributors": [],
+	"license": "MIT"
+}
