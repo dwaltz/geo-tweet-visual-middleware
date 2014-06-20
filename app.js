@@ -2,14 +2,10 @@
 
 var express = require('express');
 var Twitter = require('twit');
+var twitterCreds = require('./creds.json');
 
 //Twitter Application information
-var twitter = new Twitter({
-	consumer_key: 'ob4kks6sec77NVbEq317SDS4m',
-	consumer_secret: '9WGERSvYsEe9pPy2Amy0ZwHYkdd1DBuFnTEMDiMW0nnQ73eScc',
-	access_token: '884498701-Eu1DKP2oFlrk3jGMQxt5EuMEGLRTSsGmnglv2oQE',
-	access_token_secret: 'pBAe5yguK9T62n0xdMbqNrrAkYOm4tMJYMNAbbSz8BfQ3'
-});
+var twitter = new Twitter(twitterCreds);
 
 var app = express();
 
