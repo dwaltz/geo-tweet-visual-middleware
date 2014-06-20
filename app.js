@@ -24,8 +24,18 @@ app.use(app.router);
 
 // index page
 app.get('/test', function(req, res) {
+	var stream = twitter.stream('statuses/filter', { locations: [ '-180','-90','180','90' ] });
+	var tweetPayload = [];
 	res.setHeader( 'content-type', 'application/json' );
-	res.send( {test:true,text:'this is some cool stuff... for the birds'} );
+
+	stream.on('tweet', function (tweet) {
+		if( tweetPayload.length > 20 ) {
+			stream.stop();
+			res.send( tweetPayload );
+		} else {
+			tweetPayload.push(tweet);
+		}
+	});
 });
 
 // START SERVER
