@@ -3,9 +3,18 @@
 var express = require('express');
 var Twitter = require('twit');
 var twitterCreds = require('./creds.json');
-
+var twitter;
 //Twitter Application information
-var twitter = new Twitter(twitterCreds);
+if( process.env.consumer_key ){
+	twitter = new Twitter({
+		"consumer_key": process.env.consumer_key,
+		"consumer_secret": process.env.consumer_secret,
+		"access_token": process.env.access_token,
+		"access_token_secret": process.env.access_token_secret
+	});
+} else {
+	twitter = new Twitter(twitterCreds);
+}
 
 var app = express();
 
