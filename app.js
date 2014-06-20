@@ -2,7 +2,7 @@
 
 var express = require('express');
 var Twitter = require('twit');
-var twitterCreds = require('./creds.json');
+var twitterCreds = require('./twitcreds.json');
 var twitter;
 //Twitter Application information
 if( process.env.consumer_key ){
