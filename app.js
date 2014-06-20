@@ -23,19 +23,32 @@ app.use(express.methodOverride());
 app.use(app.router);
 
 // index page
-app.get('/test', function(req, res) {
+app.get('/tweets', function(req, res) {
 	var stream = twitter.stream('statuses/filter', { locations: [ '-180','-90','180','90' ] });
 	var tweetPayload = [];
+	var resSent;
 	res.setHeader( 'content-type', 'application/json' );
 
 	stream.on('tweet', function (tweet) {
 		if( tweetPayload.length > 20 ) {
-			stream.stop();
-			res.send( tweetPayload );
+			if( !resSent ){
+				resSent = true;
+				stream.stop();
+				res.send( tweetPayload );
+			}
 		} else {
 			tweetPayload.push(tweet);
 		}
 	});
+
+	//Handling a twitter stream cutoff situation
+	setTimeout(function(){
+		if( !resSent ){
+			resSent = true;
+			stream.stop();
+			res.send( tweetPayload );
+		}
+	},5000);
 });
 
 // START SERVER
