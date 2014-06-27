@@ -38,7 +38,9 @@ app.get('/tweets', function(req, res) {
 				res.send( tweetPayload );
 			}
 		} else {
-			tweetPayload.push(tweet);
+			if( tweet.geo ) {
+				tweetPayload.push(tweet);
+			}
 		}
 	});
 
