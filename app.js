@@ -42,6 +42,12 @@ app.get('/tweets', function(req, res) {
 		}
 	});
 
+	stream.on('disconnect', function (disconnectMessage) {
+		resSent = true;
+		stream.stop();
+		res.send( tweetPayload );
+	});
+
 	//Handling a twitter stream cutoff situation
 	setTimeout(function(){
 		if( !resSent ){
