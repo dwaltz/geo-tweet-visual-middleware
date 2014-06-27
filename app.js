@@ -2,6 +2,7 @@
 
 var express = require('express');
 var Twitter = require('twit');
+var cors = require('cors');
 //var twitterCreds = require('./twitcreds.json');
 var twitter = new Twitter({
 		"consumer_key": "ob4kks6sec77NVbEq317SDS4m",
@@ -19,6 +20,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded());
 app.use(express.json());
 app.use(express.methodOverride());
+app.use(cors());
 app.use(app.router);
 
 // index page
@@ -27,7 +29,6 @@ app.get('/tweets', function(req, res) {
 	var tweetPayload = [];
 	var resSent;
 	res.setHeader( 'content-type', 'application/json' );
-	res.setHeader('Access-Control-Allow-Origin','*');
 
 	stream.on('tweet', function (tweet) {
 		if( tweetPayload.length > 20 ) {
