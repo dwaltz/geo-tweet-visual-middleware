@@ -27,6 +27,7 @@ app.get('/tweets', function(req, res) {
 	var tweetPayload = [];
 	var resSent;
 	res.setHeader( 'content-type', 'application/json' );
+	res.setHeader('Access-Control-Allow-Origin','*');
 
 	stream.on('tweet', function (tweet) {
 		if( tweetPayload.length > 20 ) {
