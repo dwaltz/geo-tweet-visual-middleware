@@ -3,6 +3,7 @@
 var express = require('express');
 var Twitter = require('twit');
 var cors = require('cors');
+var tweetCount = 0;
 //var twitterCreds = require('./twitcreds.json');
 var twitter = new Twitter({
 		"consumer_key": "ob4kks6sec77NVbEq317SDS4m",
@@ -38,7 +39,8 @@ app.get('/tweets', function(req, res) {
 				res.send( tweetPayload );
 			}
 		} else {
-			if( tweet.geo ) {
+			//Constraining tweets to english language
+			if( tweet.geo && tweet.user.lang == 'en' ) {
 				tweetPayload.push(tweet);
 			}
 		}
